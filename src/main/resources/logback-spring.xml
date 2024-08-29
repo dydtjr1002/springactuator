@@ -1,0 +1,23 @@
+<configuration>
+    <!-- Loki4j Appender 설정 -->
+    <appender name="LOKI" class="com.github.loki4j.logback.Loki4jAppender">
+        <loki4j>
+            <!-- Loki 서버의 URL 설정 -->
+            <url>http://loki-container:3100/loki/api/v1/push</url>
+
+            <!-- 로그 배치 전송 설정 -->
+            <batch maxItems="1000" maxInterval="5000"/>
+
+            <!-- 로그 레이블 설정 -->
+            <label>
+                <pair name="app" value="my-springboot-app"/>
+                <pair name="host" value="${HOSTNAME}"/>
+            </label>
+        </loki4j>
+    </appender>
+
+    <!-- 루트 로거 설정 -->
+    <root level="INFO">
+        <appender-ref ref="LOKI"/>
+    </root>
+</configuration>
