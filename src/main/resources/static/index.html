@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to My Spring Boot Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            font-size: 3em;
+            color: #007bff;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Welcome to My Spring Boot Application</h1>
+        <button onclick="sendMetric()">Click me to generate a custom metric</button>
+    </div>
+
+    <script>
+        function sendMetric() {
+            fetch('/api/custom-metric', { method: 'POST' })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Custom metric recorded!');
+                    } else {
+                        alert('Failed to record metric.');
+                    }
+                });
+        }
+    </script>
+</body>
+</html>
